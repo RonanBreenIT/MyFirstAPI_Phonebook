@@ -10,6 +10,8 @@ namespace MyFirstAPI.Models
         public String Name { get; set; }
 
         public String Number { get; set; }
+
+        public String Address { get; set; }
         
     }
 }

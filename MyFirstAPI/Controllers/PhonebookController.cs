@@ -14,9 +14,9 @@ namespace MyFirstAPI.Controllers
 
         public PhonebookController(): base()
         {
-            Phonebook p1 = new Phonebook { Name = "Ronan", Number = "1111" };
-            Phonebook p2 = new Phonebook { Name = "James", Number = "2222" };
-            Phonebook p3 = new Phonebook { Name = "Pamela", Number = "3333" };
+            Phonebook p1 = new Phonebook { Name = "Ronan", Number = "1111", Address = "1 Main Street"};
+            Phonebook p2 = new Phonebook { Name = "James", Number = "2222", Address = "2 Main Street" };
+            Phonebook p3 = new Phonebook { Name = "Pamela", Number = "3333"};
             myBook.Add(p1);
             myBook.Add(p2);
             myBook.Add(p3);
@@ -41,13 +41,28 @@ namespace MyFirstAPI.Controllers
             Phonebook FindName = myBook.FirstOrDefault(p => p.Name.ToUpper() == name.ToUpper());
             if (FindName != null)
             {
-                return "Name: " + FindName.Name + " " + "Number: " + FindName.Number;
+                return "Number: " + FindName.Number + ", " + "Address: " + FindName.Address;
             }
             else
             {
                 return "Name not in the API";
             }
             
+        }
+
+        // http://localhost:56097/api/Phonebook?Number=1111
+        public string GetByNumber(string number)
+        {
+            Phonebook FindNumber = myBook.FirstOrDefault(p => p.Number.ToUpper() == number.ToUpper());
+            if (FindNumber != null)
+            {
+                return "Name: " + FindNumber.Name + ", " + "Address: " + FindNumber.Address;
+            }
+            else
+            {
+                return "Number not in the API";
+            }
+
         }
 
         // POST: api/Phonebook
